@@ -6,7 +6,7 @@ mongoose.connect('mongodb+srv://admin:wm99Vt0MKblWycBF@cluster0.yktrtu5.mongodb.
 const todoSchema = mongoose.Schema({
     title : String,
     description : String,
-    completed : boolean,
+    completed : Boolean
 })
 
 const todo = mongoose.model('todos',todoSchema);

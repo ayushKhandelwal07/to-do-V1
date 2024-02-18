@@ -2,10 +2,10 @@ const zod = require('zod')
 
 const createTodo = zod.object({
     title : zod.string(),
-    desacription : zod.string(),
+    description : zod.string(),
 });
 const updateTodo = zod.object({
-    id : zod.String
+    id : zod.string
 })
 
 module.exports = {
