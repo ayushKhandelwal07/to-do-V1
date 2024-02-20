@@ -2,14 +2,16 @@ const express = require('express');
 const bodyParser = require("body-parser"); 
 const {createTodo, updateTodo} = require('./type');
 const { todo } = require('./db');
+const cors = require("cors");
 
 const app = express();
 
 app.use(bodyParser.json());
 app.use(express.json());
+app.use(cors());
 
 //create todo
-app.get("/post",async (req,res)=>{
+app.post("/todo",async (req,res)=>{
     const createPayload = req.body;
     const parsedPayload = createTodo.safeParse(createPayload);
 
@@ -31,7 +33,7 @@ app.get("/post",async (req,res)=>{
 })
 
 //getting all the todo
-app.post("/post",async (req,res)=>{
+app.get("/todo",async (req,res)=>{
     const allTodo = await todo.find({});
     if(!allTodo){
         res.json({
@@ -55,7 +57,7 @@ app.put("/completed", async function(req, res) {
         return;
     }
 
-    await todo.update({
+    await todo.updateOne({
         _id: req.body.id
     }, {
       completed: true  
